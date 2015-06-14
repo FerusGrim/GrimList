@@ -1,0 +1,43 @@
+plugins {
+    id 'java'
+    id 'com.github.johnrengelman.shadow' version '1.2.1'
+}
+
+group 'me.ferusgrim'
+version '1.0-SNAPSHOT'
+
+
+
+sourceCompatibility = 1.6
+
+repositories {
+    mavenCentral()
+    jcenter()
+    maven {
+        name 'Sonatype'
+        url 'https://oss.sonatype.org/content/repositories/snapshots/'
+    }
+    maven {
+        name 'Sponge'
+        url 'http://repo.spongepowered.org/maven/'
+    }
+    maven {
+        name 'sk89q'
+        url 'http://maven.sk89q.com/repo'
+    }
+}
+
+dependencies {
+    compile "org.spongepowered:spongeapi:2.1-SNAPSHOT"
+    compile "com.googlecode.json-simple:json-simple:1.1.1"
+    compile "com.sk89q:squirrelid:0.2.0-SNAPSHOT"
+}
+
+shadowJar {
+    dependencies {
+        include(dependency('com.sk89q:squirrelid'))
+        include(dependency('com.googlecode.json-simple:json-simple'))
+    }
+    classifier ''
+}
+assemble.dependsOn shadowJar

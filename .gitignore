@@ -1,6 +1,5 @@
-.idea/
-M_LOG
+.gitignore
+.gradle/
+build/
+gradle/
 *.iml
-target/
-*.bat
-repository/
